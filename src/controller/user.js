@@ -33,7 +33,7 @@ exports.login = function (req, res, next) {
     AngularbookUser.findOne({ email: req.body.email, password: req.body.password.hashCode() })
         .then((doc) => {
             if (doc) {
-                res.send(doc);
+                res.send({"logado": true, "user":doc});
             } else {
                 res.send({ " answer": "user not found!" })
             }
