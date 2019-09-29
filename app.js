@@ -6,7 +6,7 @@ const bodyparser = require("body-parser");
 const cors = require("cors");
 const router = require("./src/controller/angularbook_controller");
 
-const port = 8080
+const port = 3000
 const app = express();
 
 app.use(cors());
@@ -17,7 +17,7 @@ app.use(bodyparser.urlencoded({
 
 app.use(bodyparser.json());
 
-app.use("/api", router);
+app.use("/", router);
 
 app.use((request, response, next) => {
     response.status(status.NOT_FOUND).send();
