@@ -1,0 +1,28 @@
+{
+  "name": "angularbookapi",
+  "version": "1.0.0",
+  "description": "Angularbook Restfull API",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andersonflima/AngularbookAPI.git"
+  },
+  "author": "andersonFlima",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/andersonflima/AngularbookAPI/issues"
+  },
+  "homepage": "https://github.com/andersonflima/AngularbookAPI#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "http-status": "^1.3.2",
+    "mongoose": "^5.7.1",
+    "nodemon": "^1.19.2"
+  }
+}
