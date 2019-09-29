@@ -6,7 +6,7 @@ const bodyparser = require("body-parser");
 const cors = require("cors");
 const router = require("./src/controller/angularbook_controller");
 
-const port = 80
+const port = process.env.PORT || 3000;
 const app = express();
 
 app.use(cors());
