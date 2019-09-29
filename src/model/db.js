@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-mongoose.connect("mongodb://localhost:27017/Angularbook", {
+mongoose.connect("mongodb+srv://adminBook:HB62iOtJWpmEXLZY@angularbook-iors0.gcp.mongodb.net/Angularbook?retryWrites=true&w=majority", {
     useUnifiedTopology: true,
     useNewUrlParser: true,
     useCreateIndex: true,
