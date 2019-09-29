@@ -20,6 +20,8 @@ exports.cadastro = function (req, res, next) {
     user.password = req.body.password_register.hashCode()
     user.birthday = req.body.birthday
     user.gender = req.body.gender
+    user.background = req.body.background
+    user.since = req.body.since
     let angbook = new AngularbookUser(user);
     angbook.save()
         .then(() => {
