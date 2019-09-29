@@ -23,7 +23,7 @@ exports.cadastro = function (req, res, next) {
     let angbook = new AngularbookUser(user);
     angbook.save()
         .then(() => {
-            res.status(status.OK).send();
+            res.status(status.OK).send({"answer":"cadastrado!"});
         })
         .catch(err => res.json({ "answer": "Valor duplicado" }));
 };
