@@ -38,7 +38,7 @@ exports.login = function (req, res, next) {
             if (doc) {
                 res.send({"logado": true, "user":doc});
             } else {
-                res.send({ "locado": false, "user": {} })
+                res.send({ "logado": false, "user": {} })
             }
         })
         .catch(err => console.log(err));
