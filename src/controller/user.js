@@ -22,6 +22,7 @@ exports.cadastro = function (req, res, next) {
     user.gender = req.body.gender
     user.background = req.body.background
     user.since = req.body.since
+    user.photo = req.body.photo
     let angbook = new AngularbookUser(user);
     angbook.save()
         .then(() => {
