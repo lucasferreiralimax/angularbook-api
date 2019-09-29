@@ -22,6 +22,7 @@ var AngularbookSchema = new mongoose.Schema({
 
 var AngularbookUserSchema = new mongoose.Schema({
     name: String,
+    lastname: String,
     password: String,
     email: {
         type: String,
@@ -30,6 +31,8 @@ var AngularbookUserSchema = new mongoose.Schema({
         dropDups: true,
         index: true
     },
+    birthday: String,
+    gender: String,
     photo: String,
     background: String,
     bio: String,
