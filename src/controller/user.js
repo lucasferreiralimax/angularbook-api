@@ -13,11 +13,11 @@ exports.listAllusers = function (req, res, next) {
 
 exports.cadastro = function (req, res, next) {
      
-    let user = AngularbookUser 
+    let user = {} 
     user.name = req.body.name
     user.lastname = req.body.lastname
     user.email = req.body.email_register
-    user.password = req.body.password.hashCode()
+    user.password = req.body.password_register.hashCode()
     user.birthday = req.body.birthday
     user.gender = req.body.gender
     let angbook = new AngularbookUser(user);
