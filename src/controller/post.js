@@ -16,7 +16,7 @@ exports.insert = function (req, res, next) {
     let angbook = new Angularbook(req.body);
     angbook.save()
         .then(() => {
-            res.status(status.OK).send({ "answer": "Postagem salva!" });
+            res.status(status.OK).send({ "notification": "Postagem salva!" });
         })
         .catch(err => console.log(err));
 };

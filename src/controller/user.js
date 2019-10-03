@@ -26,20 +26,24 @@ exports.cadastro = function (req, res, next) {
     let angbook = new AngularbookUser(user);
     angbook.save()
         .then(() => {
-            res.status(status.OK).send({"answer":"cadastrado!"});
+            res.status(status.OK).send({"notification":"Cadastrado com sucesso!"});
         })
-        .catch(err => res.json({ "answer": "Valor duplicado" }));
+        .catch(err => res.json({ "notification": "Usuário já cadastrado" }));
 };
 
 exports.login = function (req, res, next) {
 
-    AngularbookUser.findOne({ email: req.body.email, password: req.body.password.hashCode() })
+    AngularbookUser.findOne({ email: req.body.email})
         .then((doc) => {
             if (doc) {
-                res.send({"logado": true, "user":doc});
-            } else {
-                res.send({ "logado": false, "user": {} })
-            }
+                if(doc.password == req.body.password.hashCode()){
+                    res.send({"logado": true, "user":doc, "notification": "Logado com sucesso!"});
+                } else {
+                    res.send({ "logado": false, "user": {}, "notification": "Senha incorreta!" })
+                }
+            }else{
+                res.send({ "logado": false, "user": {}, "notification": "Usuario não encontrado!" })
+            } 
         })
         .catch(err => console.log(err));
 };
