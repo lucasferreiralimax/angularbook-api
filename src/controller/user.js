@@ -26,9 +26,9 @@ exports.cadastro = function (req, res, next) {
     let angbook = new AngularbookUser(user);
     angbook.save()
         .then(() => {
-            res.status(status.OK).send({"notification":"Cadastrado com sucesso!"});
+            res.status(status.OK).send({"notification": {type:"success",title:"Sucesso",content:"Cadastrado com sucesso!"}});
         })
-        .catch(err => res.json({ "notification": "Usuário já cadastrado" }));
+        .catch(err => res.json({"notification": {type:"error",title:"Erro",content:"Usuário já cadastrado."}}));
 };
 
 exports.login = function (req, res, next) {
@@ -37,12 +37,12 @@ exports.login = function (req, res, next) {
         .then((doc) => {
             if (doc) {
                 if(doc.password == req.body.password.hashCode()){
-                    res.send({"logado": true, "user":doc, "notification": "Logado com sucesso!"});
+                    res.send({"logado": true, "user":doc, "notification": {type:"success",title:"Sucesso",content:"Logado com sucesso!"}});
                 } else {
-                    res.send({ "logado": false, "user": {}, "notification": "Senha incorreta!" })
+                    res.send({ "logado": false, "user": {}, "notification": {type:"error",title:"Erro",content:"Senha invalida!"}})
                 }
             }else{
-                res.send({ "logado": false, "user": {}, "notification": "Usuario não encontrado!" })
+                res.send({ "logado": false, "user": {}, "notification": {type:"error",title:"Erro",content:"Usuário não encontrado."} })
             } 
         })
         .catch(err => console.log(err));
@@ -51,7 +51,7 @@ exports.login = function (req, res, next) {
 exports.deleteuser = function (req, res, next) {
     AngularbookUser.deleteOne({ email: req.body.email })
         .then(() => {
-            res.status(status.OK).send();
+            res.status(status.OK).send({"notification": {type:"success",title:"Sucesso",content:"Usuário deletado!"}});
         })
         .catch(err => console.log(err));
 };
@@ -59,7 +59,7 @@ exports.deleteuser = function (req, res, next) {
 exports.updateuser = function (req, res, next) {
     AngularbookUser.findOneAndUpdate({ email: req.body.email }, req.body, { new: true })
         .then(() => {
-            res.status(status.OK).send();
+            res.status(status.OK).send({"notification": {type:"success",title:"Sucesso",content:"Informações atualizadas!"}});
         })
         .catch(err => console.log(err));
 };
