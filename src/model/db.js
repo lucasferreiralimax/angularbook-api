@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
+require("dotenv").config();
 
-mongoose.connect("mongodb+srv://adminBook:HB62iOtJWpmEXLZY@angularbook-zyduz.gcp.mongodb.net/Angularbook?retryWrites=true&w=majority", {
+mongoose.connect(`mongodb+srv://${process.env.DBUSER}:${process.env.DBKEY}@${process.env.DBSTRING}`, {
     useUnifiedTopology: true,
     useNewUrlParser: true,
     useCreateIndex: true,
