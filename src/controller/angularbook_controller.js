@@ -26,6 +26,10 @@ router.post("/delete/user/post", (req, res, next) => {
 });
 
 router.post("/update/user/post", (req, res, next) => {
+    posts.updatepostuser(req, res, next);
+});
+
+router.post("/update/post", (req, res, next) => {
     posts.updatepost(req, res, next);
 });
 

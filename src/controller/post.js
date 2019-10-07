@@ -48,8 +48,16 @@ exports.deletepost = function (req, res, next) {
         .catch(err => console.log(err));
 };
 
-exports.updatepost = function (req, res, next) {
+exports.updatepostuser = function (req, res, next) {
     Angularbook.findByIdAndUpdate({ _id: req.body._id, iduser: req.body.iduser }, req.body, { new: true })
+        .then(() => {
+            res.status(status.OK).send({"notification": {type:"success",title:"Sucesso",content:"Informações atualizadas."}});
+        })
+        .catch(err => console.log(err));
+};
+
+exports.updatepost = function (req, res, next) {
+    Angularbook.findByIdAndUpdate({ _id: req.body._id }, req.body, { new: true })
         .then(() => {
             res.status(status.OK).send({"notification": {type:"success",title:"Sucesso",content:"Informações atualizadas."}});
         })
