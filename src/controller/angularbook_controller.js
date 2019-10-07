@@ -22,6 +22,10 @@ router.post("/profile", (req, res, next) => {
 });
 
 router.post("/delete/user/post", (req, res, next) => {
+    posts.deletepostuser(req, res, next);
+});
+
+router.post("/delete/post", (req, res, next) => {
     posts.deletepost(req, res, next);
 });
 

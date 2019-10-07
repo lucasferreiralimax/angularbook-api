@@ -40,7 +40,7 @@ exports.profile = function (req, res, next) {
         .catch(err => console.log(err));
 };
 
-exports.deletepost = function (req, res, next) {
+exports.deletepostuser = function (req, res, next) {
     Angularbook.deleteOne({ _id: req.body._id, iduser: req.body.iduser })
         .then(() => {
             res.status(status.OK).send({"notification": {type:"success",title:"Sucesso",content:"Postagem deletada!"}});
@@ -60,6 +60,14 @@ exports.updatepost = function (req, res, next) {
     Angularbook.findByIdAndUpdate({ _id: req.body._id }, req.body, { new: true })
         .then(() => {
             res.status(status.OK).send({"notification": {type:"success",title:"Sucesso",content:"Informações atualizadas."}});
+        })
+        .catch(err => console.log(err));
+};
+
+exports.deletepost = function (req, res, next) {
+    Angularbook.deleteOne({ _id: req.body._id})
+        .then(() => {
+            res.status(status.OK).send({"notification": {type:"success",title:"Sucesso",content:"Postagem deletada!"}});
         })
         .catch(err => console.log(err));
 };
