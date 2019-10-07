@@ -15,7 +15,7 @@ var AngularbookSchema = new mongoose.Schema({
         index: true
     },
     photo: String,
-    data: Date.toString(),
+    data: Date,
     like: { type : Array , "default" : [] },
     comment: String
 
