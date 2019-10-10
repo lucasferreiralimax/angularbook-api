@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const AngularbookUser = mongoose.model("angularbookusers");
 const status = require("http-status");
+const jwt = require("jsonwebtoken");
 
 exports.listAllusers = function (req, res, next) {
     AngularbookUser.find()
@@ -37,12 +38,21 @@ exports.login = function (req, res, next) {
         .then((doc) => {
             if (doc) {
                 if(doc.password == req.body.password.hashCode()){
-                    res.send({"user":doc, "c":{"name": "03d50a36d545d3ded354a0adcd37dc8ad480734d50fb2ba7683bde35553391c6", "value":true}, "notification": {type:"success",title:"Sucesso",content:"Logado com sucesso!"}});
+                    jwt.sign({doc}, process.env.KEY, {expiresIn: '30m`'}, (err, token)=>{
+                        if(!err){
+                            res.json(token);
+                        }else{
+                            res.sendStatus(status.FORBIDDEN);
+                        }
+                    });
+                    //res.send({"user":doc, "c":{"name": "03d50a36d545d3ded354a0adcd37dc8ad480734d50fb2ba7683bde35553391c6", "value":true}, "notification": {type:"success",title:"Sucesso",content:"Logado com sucesso!"}});
                 } else {
-                    res.send({"user": {}, "c":{"name": "03d50a36d545d3ded354a0adcd37dc8ad480734d50fb2ba7683bde35553391c6", "value":false}, "notification": {type:"error",title:"Erro",content:"Senha invalida!"}})
+                    res.sendStatus(status.FORBIDDEN);
+                    //res.send({"user": {}, "c":{"name": "03d50a36d545d3ded354a0adcd37dc8ad480734d50fb2ba7683bde35553391c6", "value":false}, "notification": {type:"error",title:"Erro",content:"Senha invalida!"}})
                 }
             }else{
-                res.send({ "logado": false, "user": {}, "notification": {type:"error",title:"Erro",content:"Usuário não encontrado."} })
+                res.sendStatus(status.FORBIDDEN);
+                //res.send({ "logado": false, "user": {}, "notification": {type:"error",title:"Erro",content:"Usuário não encontrado."} })
             } 
         })
         .catch(err => console.log(err));
