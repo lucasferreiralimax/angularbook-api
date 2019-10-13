@@ -137,8 +137,8 @@ router.post("/update/user",verifyToken, (req, res, next) => {
 });
 
 function verifyToken(req, res, next){
+    console.log(req.headers);
     let bearerHeader = req.headers["authorization"];
-    console.log(bearerHeader);
     if(typeof bearerHeader !== 'undefined'){
         let bearer = bearerHeader.split(" ")[1];
         req.token = bearer;
