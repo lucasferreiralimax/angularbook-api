@@ -144,6 +144,7 @@ function verifyToken(req, res, next){
         next();
 
     }else{
+        console.log(req.token);
         res.sendStatus(status.FORBIDDEN);
     }
 }
