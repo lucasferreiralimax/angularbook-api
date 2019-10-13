@@ -9,7 +9,7 @@ var router = express.Router();
 //posts
 router.post("/list/users/posts", verifyToken, (req, res, next) => {
     jwt.verify(req.token, process.env.KEY, (err, authData)=>{
-        if(err){
+        if(!err){
             posts.listAllposts(req, res, next);
         }else{
             res.sendStatus(status.FORBIDDEN);
