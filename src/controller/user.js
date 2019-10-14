@@ -17,7 +17,7 @@ exports.cadastro = function (req, res, next) {
     let user = {}
     user.name = req.body.name;
     user.lastname = req.body.lastname;
-    user.username = req.body.name+ req.body.lastname;
+    user.username = req.body.name + req.body.lastname;
     user.email = req.body.email_register;
     user.password = req.body.password_register.hashCode();
     user.birthday = req.body.birthday;
@@ -109,10 +109,10 @@ exports.profile = function(req, res, next){
                     relationship: doc.relationship,
                     since: doc.since
                 }});
+            }
         })
         .catch(err => console.log(err));
 };
-}
 
 String.prototype.hashCode = function () {
     var hash = 0;
