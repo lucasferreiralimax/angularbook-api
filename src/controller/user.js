@@ -94,8 +94,7 @@ exports.profile = function(req, res, next){
     AngularbookUser.findOne({ username: req.body.username})
         .then((doc) => {
             if (doc) {
-                res.send({
-                    "user": {
+                let user = {
                     id: doc._id,
                     username: doc.username,
                     name: doc.name,
@@ -108,7 +107,8 @@ exports.profile = function(req, res, next){
                     location: doc.location,
                     relationship: doc.relationship,
                     since: doc.since
-                }});
+                }
+                return user;
             }
         })
         .catch(err => console.log(err));

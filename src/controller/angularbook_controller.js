@@ -42,8 +42,12 @@ router.post("/list/user/post", verifyToken,(req, res, next) => {
 router.post("/profile",verifyToken, (req, res, next) => {
     jwt.verify(req.token, process.env.KEY, (err, authData)=>{
         if(!err){
-            user.porifle(req.res,next);
-            posts.profile(req, res, next); 
+            let obj = {
+                "user" : user.porifle(req.res,next),
+                "posts": posts.profile(req, res, next),
+            };
+            res.send(obj);
+            
         }else{
             res.sendStatus(status.FORBIDDEN);
         }
