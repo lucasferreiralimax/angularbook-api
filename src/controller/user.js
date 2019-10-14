@@ -44,6 +44,7 @@ exports.login = function (req, res, next) {
                             res.send({
                               "user": {
                                 id: doc._id,
+                                username: doc.username,
                                 name: doc.name,
                                 lastname: doc.lastname,
                                 email: doc.email,

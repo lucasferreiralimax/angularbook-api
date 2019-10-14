@@ -24,6 +24,12 @@ var AngularbookSchema = new mongoose.Schema({
 var AngularbookUserSchema = new mongoose.Schema({
     name: String,
     lastname: String,
+    username: {
+        type: String,
+        unique: true,
+        dropDups: false,
+        index: true
+    },
     password: String,
     email: {
         type: String,
