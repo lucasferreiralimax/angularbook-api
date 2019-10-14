@@ -34,6 +34,7 @@ exports.listOne = function (req, res, next) {
 exports.profile = function (req, res, next) {
     Angularbook.find({ iduser: req.body.iduser })
         .then((docs) => {
+            console.log(docs);
             if (docs) { res.send(docs); }
             else { res.status(status.OK).send({"notification": {type:"error",title:"Erro",content:"Não foram encontrada postagens do usuário."}}); }
         })
