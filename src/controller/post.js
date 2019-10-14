@@ -32,7 +32,7 @@ exports.listOne = function (req, res, next) {
 };
 
 exports.profile = function (req, res, next) {
-    Angularbook.find({ iduser: req.body.iduser })
+    Angularbook.find({ username: req.body.username })
         .then((docs) => {
             console.log(docs);
             if (docs) { res.send(docs); }
