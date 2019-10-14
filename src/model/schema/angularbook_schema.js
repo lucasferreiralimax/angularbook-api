@@ -3,7 +3,8 @@ const mongoose = require("mongoose");
 var AngularbookSchema = new mongoose.Schema({
     iduser: {
         type: String,
-        unique: false,
+        unique: true,
+        required:true,
         dropDups: false,
         index: true
     },
