@@ -49,6 +49,7 @@ exports.login = function (req, res, next) {
                                 birthday: doc.birthday,
                                 gender: doc.gender,
                                 photo: doc.photo,
+                                background: doc.background,
                                 location: doc.location,
                                 relationship: doc.relationship,
                                 since: doc.since
