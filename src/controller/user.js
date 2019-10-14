@@ -43,6 +43,7 @@ exports.login = function (req, res, next) {
                             // res.json(token);
                             res.send({
                               "user": {
+                                id: doc._id,
                                 name: doc.name,
                                 lastname: doc.lastname,
                                 email: doc.email,
