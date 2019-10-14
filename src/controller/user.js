@@ -48,7 +48,10 @@ exports.login = function (req, res, next) {
                                 username: doc.username,
                                 name: doc.name,
                                 lastname: doc.lastname,
-                                email: doc.email
+                                email: doc.email,
+                                photo: doc.photo,
+                                background: doc.background,
+                                location: doc.location
                               },
                               "c": token,
                               "notification": {
