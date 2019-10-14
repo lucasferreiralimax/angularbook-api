@@ -13,8 +13,8 @@ exports.listAllusers = function (req, res, next) {
 };
 
 exports.cadastro = function (req, res, next) {
-     
-    let user = {} 
+
+    let user = {}
     user.name = req.body.name
     user.lastname = req.body.lastname
     user.email = req.body.email_register
@@ -40,12 +40,13 @@ exports.login = function (req, res, next) {
                 if(doc.password == req.body.password.hashCode()){
                     jwt.sign({doc}, process.env.KEY, {expiresIn: '30m'}, (err, token)=>{
                         if(!err){
-                            res.json(token);
+                            // res.json(token);
+                            res.send({"user":doc, "c":token, "notification": {type:"success",title:"Sucesso",content:"Logado com sucesso!"}});
                         }else{
                             res.sendStatus(status.FORBIDDEN);
                         }
                     });
-                    //res.send({"user":doc, "c":{"name": "03d50a36d545d3ded354a0adcd37dc8ad480734d50fb2ba7683bde35553391c6", "value":true}, "notification": {type:"success",title:"Sucesso",content:"Logado com sucesso!"}});
+                    // res.send({"user":doc, "c":{"name": "03d50a36d545d3ded354a0adcd37dc8ad480734d50fb2ba7683bde35553391c6", "value":true}, "notification": {type:"success",title:"Sucesso",content:"Logado com sucesso!"}});
                 } else {
                     res.sendStatus(status.FORBIDDEN);
                     //res.send({"user": {}, "c":{"name": "03d50a36d545d3ded354a0adcd37dc8ad480734d50fb2ba7683bde35553391c6", "value":false}, "notification": {type:"error",title:"Erro",content:"Senha invalida!"}})
@@ -53,7 +54,7 @@ exports.login = function (req, res, next) {
             }else{
                 res.sendStatus(status.FORBIDDEN);
                 //res.send({ "logado": false, "user": {}, "notification": {type:"error",title:"Erro",content:"Usuário não encontrado."} })
-            } 
+            }
         })
         .catch(err => console.log(err));
 };
