@@ -41,7 +41,25 @@ exports.login = function (req, res, next) {
                     jwt.sign({doc}, process.env.KEY, {expiresIn: '30m'}, (err, token)=>{
                         if(!err){
                             // res.json(token);
-                            res.send({"user":doc, "c":token, "notification": {type:"success",title:"Sucesso",content:"Logado com sucesso!"}});
+                            res.send({
+                              "user": {
+                                name: doc.name,
+                                lastname: doc.lastname,
+                                email: doc.email,
+                                birthday: doc.birthday,
+                                gender: doc.gender,
+                                photo: doc.photo,
+                                location: doc.location,
+                                relationship: doc.relationship,
+                                since: doc.since
+                              },
+                              "c": token,
+                              "notification": {
+                                type: "success",
+                                title: "Sucesso",
+                                content: "Logado com sucesso!"
+                              }
+                            });
                         }else{
                             res.sendStatus(status.FORBIDDEN);
                         }
