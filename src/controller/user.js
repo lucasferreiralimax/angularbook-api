@@ -15,15 +15,16 @@ exports.listAllusers = function (req, res, next) {
 exports.cadastro = function (req, res, next) {
 
     let user = {}
-    user.name = req.body.name
-    user.lastname = req.body.lastname
-    user.email = req.body.email_register
-    user.password = req.body.password_register.hashCode()
-    user.birthday = req.body.birthday
-    user.gender = req.body.gender
-    user.background = req.body.background
-    user.since = req.body.since
-    user.photo = req.body.photo
+    user.name = req.body.name;
+    user.lastname = req.body.lastname;
+    user.username = req.body.name+ req.body.lastname;
+    user.email = req.body.email_register;
+    user.password = req.body.password_register.hashCode();
+    user.birthday = req.body.birthday;
+    user.gender = req.body.gender;
+    user.background = req.body.background;
+    user.since = req.body.since;
+    user.photo = req.body.photo;
     let angbook = new AngularbookUser(user);
     angbook.save()
         .then(() => {
