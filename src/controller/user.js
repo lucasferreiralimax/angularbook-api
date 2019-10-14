@@ -93,30 +93,6 @@ exports.updateuser = function (req, res, next) {
         .catch(err => console.log(err));
 };
 
-exports.profile = function(req, res, next){
-    AngularbookUser.findOne({ username: req.body.username})
-        .then((doc) => {
-            if (doc) {
-                res.send({
-                    "user": {
-                    id: doc._id,
-                    username: doc.username,
-                    name: doc.name,
-                    lastname: doc.lastname,
-                    email: doc.email,
-                    birthday: doc.birthday,
-                    gender: doc.gender,
-                    photo: doc.photo,
-                    background: doc.background,
-                    location: doc.location,
-                    relationship: doc.relationship,
-                    since: doc.since
-                }});
-            }
-        })
-        .catch(err => console.log(err));
-};
-
 String.prototype.hashCode = function () {
     var hash = 0;
     if (this.length == 0) {
