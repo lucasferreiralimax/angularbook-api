@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const Angularbook = mongoose.model("angularbooks");
+const AngularbookUser = mongoose.model("angularbookusers");
 const status = require("http-status");
 
 exports.listAllposts = function (req, res, next) {
@@ -13,12 +14,25 @@ exports.listAllposts = function (req, res, next) {
 };
 
 exports.insert = function (req, res, next) {
-    let angbook = new Angularbook(req.body);
-    angbook.save()
-        .then(() => {
-            res.status(status.OK).send({ "notification": {type:"success",title:"Success",content:"Postagem salva!"} });
-        })
-        .catch(err => console.log(err));
+    AngularbookUser.findOne({ id: req.body.iduser})
+    .then((doc)=>{
+        post = {}
+        post.iduser = doc._id;
+        post.name = doc.name;
+        post.email = doc.email;
+        post.photo = doc.photo;
+        post.data = req.body.data;
+        post.comment = req.body.comment;
+
+        let angbook = new Angularbook(post);
+    
+        angbook.save()
+            .then(() => {
+                res.status(status.OK).send({ "notification": {type:"success",title:"Success",content:"Postagem salva!"} });
+            })
+            .catch(err => console.log(err));
+    })
+    .catch(err => console.log(err));
 };
 
 exports.listOne = function (req, res, next) {
