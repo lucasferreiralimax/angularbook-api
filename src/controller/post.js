@@ -14,7 +14,7 @@ exports.listAllposts = function (req, res, next) {
 };
 
 exports.insert = function (req, res, next) {
-    AngularbookUser.findOne({ id: req.body.iduser})
+    AngularbookUser.findOne({ _id: req.body.iduser})
     .then((doc)=>{
         post = {}
         post.iduser = doc._id;
